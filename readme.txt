@@ -3,7 +3,7 @@
 # 2. URL base - localhost
 # 3. Endpoints -
 #   localhost/livros (GET)
-#  localhost/livros/id (GET)
+#   localhost/livros/id (GET)
 #   localhost/livros/id (PUT)
 #   localhost/livros/id (DELETE)
 # 4. Quais recursos - livros
