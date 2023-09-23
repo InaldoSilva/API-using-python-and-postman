@@ -5,41 +5,65 @@ app = Flask(__name__)
 
 livros = [
     {
-        'id': 1,
-        'título': 'O senhor dos Anéis - A sociedade do Anel',
-        'autor': 'J.R.R Tolkien'
+        "autor": "J.R.R Tolkien",
+        "id": 1,
+        "título": "O senhor dos Anéis - A sociedade do Anel"
     },
     {
-        'id': 2,
-        'título': 'Harry Potter e a Pedra Filosofal',
-        'autor': 'J.K. Howling'
+        "autor": "J.K. Howling",
+        "id": 2,
+        "título": "Harry Potter e a Pedra Filosofal"
     },
     {
-        'id': 3,
-        'título': 'James Clear',
-        'autor': 'Hábitos Atômicos',
+        "autor": "Hábitos Atômicos",
+        "id": 3,
+        "título": "James Clear"
     },
+    {
+        "Autor": "Jim Caviezel",
+        "id": 4,
+        "título": "Sound of freedom"
+    },
+    {
+        "Autor": "Pocket Gems",
+        "id": 5,
+        "título": "World of War Dragons"
+    },
+    {
+        "Autor": "...E o vento levou",
+        "id": 6,
+        "título": "Margareth Mitchell"
+    }
+
 ]
 
 # Consultar (todos)
+
+
 @app.route('/livros', methods=["GET"])
 def obter_livros():
     return jsonify(livros)
 # Consultar(id)
+
+
 @app.route('/livros/<int:id>', methods=['GET'])
 def obter_livro_por_id(id):
     for livro in livros:
         if livro.get('id') == id:
             return jsonify(livro)
 # Editar
+
+
 @app.route('/livros/<int:id>', methods=['PUT'])
 def editar_livro_por_id(id):
     livro_alterado = request.get_json()
-    for indice,livro in enumerate(livros):
+    for indice, livro in enumerate(livros):
         if livro.get('id') == id:
             livros[indice].update(livro_alterado)
             return jsonify(livros[indice])
 # Criar
+
+
 @app.route('/livros', methods=['POST'])
 def incluir_novo_livro():
     novo_livro = request.get_json()
@@ -47,11 +71,15 @@ def incluir_novo_livro():
     
     return jsonify(livros)
 # Excluir
+
+
 @app.route('/livros/<int:id>', methods=['DELETE'])
 def excluir_livro(id):
-    for indice,livro in enumerate(livros):
+    for indice, livro in enumerate(livros):
         if livro.get('id') == id:
             del livros[indice]
             
     return jsonify(livros)        
-app.run(port=5000,host='localhost',debug=True)
+
+
+app.run(port=5000, host='localhost', debug=True)
